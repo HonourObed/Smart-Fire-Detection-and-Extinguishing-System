@@ -16,16 +16,16 @@
 #define SERVO_PIN           22  // Servo motor pin
 
 // WiFi credentials (Station mode)
-const char* ssid = "Honour's Device";
-const char* password = "quark-gluon-plasma-eon";
+const char* ssid = "Input Your SSID";
+const char* password = "Input Password";
 
 // Access Point credentials (Fallback)
-const char* apSSID = "FlameGuard-AP";
-const char* apPassword = "flame123";
+const char* apSSID = "Input Your AP SSID";
+const char* apPassword = "Input Password";
 
 // Telegram credentials
-#define BOT_TOKEN "8133365908:AAGWG0F4UMJ9ejaByOUDxoxN4uMyWqQBrDU"
-#define CHAT_ID "5484017015"
+#define BOT_TOKEN "Add Telegram Token"
+#define CHAT_ID "Add Chat ID"
 
 // NTP setup for WAT (UTC+1)
 WiFiUDP ntpUDP;
