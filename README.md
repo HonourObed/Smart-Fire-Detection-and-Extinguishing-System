@@ -5,7 +5,6 @@
 [![Project Status](https://img.shields.io/badge/Status-Prototype-orange.svg)](#)
 [![Tech](https://img.shields.io/badge/Platform-ESP32-blue.svg)](#)
 [![Framework](https://img.shields.io/badge/Framework-Arduino%20/%20C++-green.svg)](#)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
 Developed as a collaborative project under the **Department of Mechatronics Engineering**, this system addresses the critical delay between fire ignition and human response. While conventional alarms only notify, this prototype **detects, alerts, and suppresses** fire autonomously.
 
