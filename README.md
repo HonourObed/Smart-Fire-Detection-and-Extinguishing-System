@@ -1,106 +1,47 @@
-# Smart-Fire-Detection-and-Extinguishing-System
-This repository contains the code and documentation for a Smart Fire Detection and Extinguishing System.  The system is designed as a low-cost, automated Internet of Things (IoT) prototype to address the significant safety challenges posed by fire outbreaks. A team project designed under the department of Mechatronics Engineering
-The system is designed as a low-cost, automated Internet of Things (IoT) prototype to address the significant safety challenges posed by fire outbreaks. It aims to close the "dangerous response gap" left by conventional manual extinguishers or basic alarms by providing a solution that both detects fire early and acts immediately to suppress it.
+# 🔥 Smart Fire Detection & Extinguishing System (IoT)
 
+**An automated, low-cost IoT solution designed to bridge the "dangerous response gap" in fire safety.**
 
+[![Project Status](https://img.shields.io/badge/Status-Prototype-orange.svg)](#)
+[![Tech](https://img.shields.io/badge/Platform-ESP32-blue.svg)](#)
+[![Framework](https://img.shields.io/badge/Framework-Arduino%20/%20C++-green.svg)](#)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
+Developed as a collaborative project under the **Department of Mechatronics Engineering**, this system addresses the critical delay between fire ignition and human response. While conventional alarms only notify, this prototype **detects, alerts, and suppresses** fire autonomously.
 
+---
 
-Key Features
+## 🚀 Key Features
 
-Dual-Sensor Detection: Integrates both a flame sensor and an MQ-series smoke sensor to reliably monitor for fire conditions.
+* **⚡ Dual-Factor Verification:** Integrates an IR flame sensor and MQ-series smoke sensor to minimize false positives through concurrent detection logic.
+* **💧 Autonomous Suppression:** Instantaneous activation of a 5V DC pump via a dedicated relay module upon hazard confirmation.
+* **📱 Cloud Connectivity:** Real-time critical alerts delivered via **Telegram Bot API** with synchronized NTP timestamps.
+* **🌐 Hybrid Control Interface:**
+    * **Web Dashboard:** A local web server hosted on the ESP32 for live status monitoring.
+    * **Remote Commands:** Full manual override (Pump/Buzzer) via Telegram commands or the Web UI.
+* **🛡️ Fail-Safe Connectivity:** Intelligent **Fallback Access Point (AP)** mode ensures local control even if the primary Wi-Fi network is unavailable.
+* **🎯 Precision Logic:** Software-based debouncing ($50ms$) and confirmation intervals ($500ms$) ensure high system reliability.
 
+---
 
+## 🛠️ Technical Architecture
 
+### Hardware Stack
+| Component | Function |
+| :--- | :--- |
+| **ESP32 Dev Board** | Central Processing & Wi-Fi Gateway |
+| **Flame Sensor** | Infrared-based fire detection |
+| **MQ Smoke Sensor** | Gas/Smoke concentration monitoring |
+| **5V Relay Module** | Power switching for the actuator |
+| **5V DC Pump** | Active fire suppression |
+| **Buzzer & LEDs** | Audiovisual status indicators |
 
+[Image of ESP32 fire detection system wiring diagram]
 
-Automated Extinguishing: Automatically triggers a 5V DC pump via a relay module to begin extinguishing the fire immediately upon confirmed detection.
+### Software & Libraries
+The firmware is developed in **C++** using the **Arduino framework**. Key libraries include:
+* `WiFi.h` & `WebServer.h`: Network management and local UI hosting.
+* `UniversalTelegramBot.h` & `ArduinoJson.h`: Secure bot communication and data parsing.
+* `NTPClient.h`: Time synchronization for alert logging.
 
-
-
-
-
-IoT Connectivity & Alerts: Uses the ESP32's built-in Wi-Fi to send real-time critical alert messages to a predefined chat ID via a Telegram Bot.
-
-
-
-
-Remote & Local Control: Features a web interface hosted directly on the ESP32, allowing for live system status monitoring and remote manual control.
-
-
-
-
-Manual Override: Allows users to manually activate or deactivate the pump and buzzer via the web interface or through Telegram commands.
-
-
-Robust Connectivity: Includes a fallback Access Point (AP) mode that activates if a connection to the configured Wi-Fi network fails, ensuring local control is always available.
-
-
-
-False Alarm Reduction: Implements software-based sensor debouncing (50ms) and a confirmation interval (500ms) that requires both sensors to detect a hazard, reducing false alarms.
-
-Core Technology
-The prototype is built on an ESP32 microcontroller and integrates sensing, processing, and actuation.
-
-
-Hardware Components:
-
-
-Controller: ESP32 Development Board 
-
-
-Sensors: Flame Sensor , MQ-series Smoke Sensor 
-
-
-
-
-Actuators: 5V Relay Module , 5V DC Pump , Buzzer 
-
-
-
-
-Indicators: Red and Yellow LEDs for visual status 
-
-
-Software & Logic:
-
-
-Platform: Developed in C++ using the Arduino framework.
-
-
-Key Libraries:
-
-
-WiFi.h & WebServer.h: For network connection and hosting the local web dashboard.
-
-
-
-UniversalTelegramBot.h & ArduinoJson.h: For handling Telegram bot communication.
-
-
-
-NTPClient.h: For time synchronization to timestamp alerts.
-
-
-System Logic
-
-Initialization: On startup, the ESP32 attempts to connect to a pre-configured Wi-Fi network.
-
-
-Fallback Mode: If the Wi-Fi connection fails, the system automatically creates its own access point named "FlameGuard-AP" for local control.
-
-
-Monitoring: The system continuously reads data from the flame and smoke sensors.
-
-
-Confirmation: To prevent false positives, a fire event is only confirmed when both sensors consistently detect a hazard within the defined confirmation interval.
-
-Action (Automatic Mode): When a fire is confirmed, the system immediately:
-
-Activates the audible buzzer and visual LED alerts.
-
-Triggers the 5V relay, which energizes the DC water pump to begin suppression.
-
-Sends a critical alert message via the Telegram bot, including sensor status and a timestamp.
-
-Updates the status on the web dashboard.
+---
